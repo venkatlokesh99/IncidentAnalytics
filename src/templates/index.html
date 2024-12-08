@@ -158,30 +158,43 @@
             }
         }
 
-        function renderMap(clusteringData) {
-            const map = L.map('clusteringMap').setView([35.2226, -97.4395], 13); // Center on Norman, OK
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '© OpenStreetMap contributors'
-            }).addTo(map);
+    let map; // Declare map variable globally
 
-            clusteringData.forEach(location => {
-                if (location.lat && location.lon) {
-                    L.marker([location.lat, location.lon])
-                        .addTo(map)
-                        .bindPopup(location.popup_info) // Use the popup_info field
-                        .on('mouseover', function(e) {
-                            this.openPopup();
-                        })
-                        .on('mouseout', function(e) {
-                            this.closePopup();
-                        });
-                }
-            });
-
-            const bounds = L.latLngBounds(clusteringData.map(loc => [loc.lat, loc.lon]));
-            map.fitBounds(bounds);
+    function renderMap(clusteringData) {
+        // Check if the map is already initialized
+        if (map) {
+            map.remove(); // Remove the existing map instance
         }
+
+        // Reinitialize the map
+        map = L.map('clusteringMap').setView([35.2226, -97.4395], 13); // Center on Norman, OK
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Add markers for each data point
+        clusteringData.forEach(location => {
+            if (location.lat && location.lon) {
+                L.marker([location.lat, location.lon])
+                    .addTo(map)
+                    .bindPopup(location.popup_info) // Use the popup_info field
+                    .on('mouseover', function (e) {
+                        this.openPopup();
+                    })
+                    .on('mouseout', function (e) {
+                        this.closePopup();
+                    });
+            }
+        });
+
+        // Fit map bounds to data
+        const bounds = L.latLngBounds(clusteringData.map(loc => [loc.lat, loc.lon]));
+        map.fitBounds(bounds);
+    }
+
     </script>
 </body>
 </html>
