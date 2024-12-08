@@ -147,7 +147,7 @@ project/
 ### Running Tests
 Use `pytest` to run the test suite:
 ```bash
-pytest -v tests
+pipenv run python -m pytest -v
 ```
 ### Test Coverage
 
