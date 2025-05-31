@@ -14,7 +14,7 @@ UPLOAD_FOLDER = 'uploads'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 # Initialize Google Maps API client
-GMAPS_API_KEY = "AIzaSyBW8jFyrA7pc3NfKdZMMvnaDhWKRrLrEJY"
+GMAPS_API_KEY = "<Replace with your Google Maps API Key>"
 gmaps = googlemaps.Client(key=GMAPS_API_KEY)
 
 # Initialize global dataframe
