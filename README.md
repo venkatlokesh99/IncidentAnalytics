@@ -1,4 +1,4 @@
-# IncidentAnalytics
+# Incident Data Analytics
 ## Project Overview
 This project provides a comprehensive solution for analyzing and visualizing incident data using various methods and technologies. It includes functionality for:
 
